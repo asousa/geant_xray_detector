@@ -32,6 +32,7 @@
 #include "PrimaryGeneratorAction.hh"
 #include "DetectorConstruction.hh"
 // #include "Run.hh"
+// #include "DetectorAnalysis.hh"
 
 #include "G4RunManager.hh"
 #include "G4Run.hh"
@@ -48,22 +49,18 @@ RunAction::RunAction()
   fEdep(0.),
   fEdep2(0.)
 { 
-  // add new units for dose
-  // 
-  const G4double milligray = 1.e-3*gray;
-  const G4double microgray = 1.e-6*gray;
-  const G4double nanogray  = 1.e-9*gray;  
-  const G4double picogray  = 1.e-12*gray;
-   
-  new G4UnitDefinition("milligray", "milliGy" , "Dose", milligray);
-  new G4UnitDefinition("microgray", "microGy" , "Dose", microgray);
-  new G4UnitDefinition("nanogray" , "nanoGy"  , "Dose", nanogray);
-  new G4UnitDefinition("picogray" , "picoGy"  , "Dose", picogray); 
-
   // Register accumulable to the accumulable manager
   G4AccumulableManager* accumulableManager = G4AccumulableManager::Instance();
   accumulableManager->RegisterAccumulable(fEdep);
   accumulableManager->RegisterAccumulable(fEdep2); 
+
+  // Set up the ASCII log file
+  asciiFileName="detector_ascii.out";
+  asciiFile = new std::ofstream(asciiFileName);
+
+  if(asciiFile->is_open()) 
+    (*asciiFile) << "Hey! Write this header line please." << G4endl << G4endl;  
+
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -82,12 +79,21 @@ void RunAction::BeginOfRunAction(const G4Run*)
   G4AccumulableManager* accumulableManager = G4AccumulableManager::Instance();
   accumulableManager->Reset();
 
+
+  // // Analysis setup:
+  // DetectorAnalysis* analysis = DetectorAnalysis::getInstance();
+  // analysis->book(IsMaster());
+
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void RunAction::EndOfRunAction(const G4Run* run)
 {
+
+  // DetectorAnalysis* analysis = DetectorAnalysis::getInstance();
+  // analysis->finish(IsMaster());
+
   G4int nofEvents = run->GetNumberOfEvent();
   if (nofEvents == 0) return;
 
@@ -107,8 +113,8 @@ void RunAction::EndOfRunAction(const G4Run* run)
    = static_cast<const DetectorConstruction*>
      (G4RunManager::GetRunManager()->GetUserDetectorConstruction());
   G4double mass = detectorConstruction->GetScoringVolume()->GetMass();
-  G4double dose = edep/mass;
-  G4double rmsDose = rms/mass;
+  // G4double dose = edep/mass;
+  // G4double rmsDose = rms/mass;
 
   // Run conditions
   //  note: There is no primary generator action object for "master"
@@ -119,7 +125,7 @@ void RunAction::EndOfRunAction(const G4Run* run)
   G4String runCondition;
   if (generatorAction)
   {
-    const G4ParticleGun* particleGun = generatorAction->GetParticleGun();
+    const G4GeneralParticleSource* particleGun = generatorAction->GetParticleGun();
     runCondition += particleGun->GetParticleDefinition()->GetParticleName();
     runCondition += " of ";
     G4double particleEnergy = particleGun->GetParticleEnergy();
@@ -127,6 +133,11 @@ void RunAction::EndOfRunAction(const G4Run* run)
   }
         
   // Print
+  if (IsMaster()) {
+  //only master performs these operations
+  asciiFile->close();
+
+  }
   //  
   if (IsMaster()) {
     G4cout
@@ -142,9 +153,6 @@ void RunAction::EndOfRunAction(const G4Run* run)
   G4cout
      << G4endl
      << " The run consists of " << nofEvents << " "<< runCondition
-     << G4endl
-     << " Cumulated dose per run, in scoring volume : " 
-     << G4BestUnit(dose,"Dose") << " rms = " << G4BestUnit(rmsDose,"Dose")
      << G4endl
      << " Absorbed energy per run, in scoring volume : " 
      << G4BestUnit(edep,"Energy") << " rms = " << G4BestUnit(rms,"Energy")

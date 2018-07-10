@@ -31,7 +31,7 @@
 #include "SteppingAction.hh"
 #include "EventAction.hh"
 #include "DetectorConstruction.hh"
-
+// #include "DetectorAnalysis.hh"
 #include "G4Step.hh"
 #include "G4Event.hh"
 #include "G4RunManager.hh"
@@ -54,6 +54,26 @@ SteppingAction::~SteppingAction()
 
 void SteppingAction::UserSteppingAction(const G4Step* step)
 {
+
+  // G4bool entering = true;   // Log hits to ASCII file?
+  // G4Track* track = step->GetTrack();
+
+  // G4String volName; 
+  // if (track->GetVolume()) volName =  track->GetVolume()->GetName(); 
+  // G4String nextVolName;
+  // if (track->GetNextVolume()) nextVolName =  track->GetNextVolume()->GetName();
+
+  // DetectorAnalysis* analysis = DetectorAnalysis::getInstance();
+ 
+  // // Entering Detector
+  // if (volName != "Detector_P" && nextVolName == "Detector_P") 
+  //   {
+  //     entering = true;
+  //     analysis->Update(track->GetKineticEnergy(),G4Threading::G4GetThreadId());
+  //   }
+
+  // analysis->analyzeStepping(*track,entering);
+
   if (!fScoringVolume) { 
     const DetectorConstruction* detectorConstruction
       = static_cast<const DetectorConstruction*>
@@ -72,6 +92,9 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   // collect energy deposited in this step
   G4double edepStep = step->GetTotalEnergyDeposit();
   fEventAction->AddEdep(edepStep);  
+
+  G4cout << "hey! this step consisted of: " << edepStep << G4endl;
+
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

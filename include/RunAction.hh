@@ -58,6 +58,10 @@ class RunAction : public G4UserRunAction
   private:
     G4Accumulable<G4double> fEdep;
     G4Accumulable<G4double> fEdep2;
+
+    G4String asciiFileName;
+    std::ofstream *asciiFile;
+
 };
 
 #endif

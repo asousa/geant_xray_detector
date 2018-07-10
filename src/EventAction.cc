@@ -57,9 +57,13 @@ void EventAction::BeginOfEventAction(const G4Event*)
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void EventAction::EndOfEventAction(const G4Event*)
-{   
+{  
+
+
   // accumulate statistics in run action
   fRunAction->AddEdep(fEdep);
+
+  G4cout << "Hey dude, this event consisted of " << fEdep << G4endl;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

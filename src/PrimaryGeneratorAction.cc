@@ -34,7 +34,8 @@
 #include "G4LogicalVolume.hh"
 #include "G4Box.hh"
 #include "G4RunManager.hh"
-#include "G4ParticleGun.hh"
+// #include "G4ParticleGun.hh"
+#include "G4GeneralParticleSource.hh"
 #include "G4ParticleTable.hh"
 #include "G4ParticleDefinition.hh"
 #include "G4SystemOfUnits.hh"
@@ -49,16 +50,20 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
   fEnvelopeBox(0)
 {
   G4int n_particle = 1;
-  fParticleGun  = new G4ParticleGun(n_particle);
+  fParticleGun  = new G4GeneralParticleSource();
 
   // default particle kinematic
-  G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
-  G4String particleName;
-  G4ParticleDefinition* particle
-    = particleTable->FindParticle(particleName="gamma");
-  fParticleGun->SetParticleDefinition(particle);
-  fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.,0.,1.));
-  fParticleGun->SetParticleEnergy(6.*MeV);
+  // G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
+  // G4String particleName;
+  // G4ParticleDefinition* particle
+  //   = particleTable->FindParticle(particleName="gamma");
+  // fParticleGun->SetParticleDefinition(particle);
+  // fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.,0.,1.));
+  // fParticleGun->SetParticleEnergy(6.*MeV);
+
+
+    // fParticleGun = new G4GeneralParticleSource ();
+
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -79,54 +84,58 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   // on DetectorConstruction class we get Envelope volume
   // from G4LogicalVolumeStore.
   
-  G4double envSizeXY = 0;
-  G4double envSizeZ = 0;
+  // G4double envSizeXY = 0;
+  // G4double envSizeZ = 0;
 
-  if (!fEnvelopeBox)
-  {
-    G4LogicalVolume* envLV
-      = G4LogicalVolumeStore::GetInstance()->GetVolume("Envelope");
-    if ( envLV ) fEnvelopeBox = dynamic_cast<G4Box*>(envLV->GetSolid());
-  }
+  // if (!fEnvelopeBox)
+  // {
+  //   G4LogicalVolume* envLV
+  //     = G4LogicalVolumeStore::GetInstance()->GetVolume("Envelope");
+  //   if ( envLV ) fEnvelopeBox = dynamic_cast<G4Box*>(envLV->GetSolid());
+  // }
 
-  if ( fEnvelopeBox ) {
-    envSizeXY = fEnvelopeBox->GetXHalfLength()*2.;
-    envSizeZ = fEnvelopeBox->GetZHalfLength()*2.;
-  }  
-  else  {
-    G4ExceptionDescription msg;
-    msg << "Envelope volume of box shape not found.\n"; 
-    msg << "Perhaps you have changed geometry.\n";
-    msg << "The gun will be place at the center.";
-    G4Exception("PrimaryGeneratorAction::GeneratePrimaries()",
-     "MyCode0002",JustWarning,msg);
-  }
+  // if ( fEnvelopeBox ) {
+  //   envSizeXY = fEnvelopeBox->GetXHalfLength()*2.;
+  //   envSizeZ = fEnvelopeBox->GetZHalfLength()*2.;
+  // }  
+  // else  {
+  //   G4ExceptionDescription msg;
+  //   msg << "Envelope volume of box shape not found.\n"; 
+  //   msg << "Perhaps you have changed geometry.\n";
+  //   msg << "The gun will be place at the center.";
+  //   G4Exception("PrimaryGeneratorAction::GeneratePrimaries()",
+  //    "MyCode0002",JustWarning,msg);
+  // }
 
-  // beam trajectory
-  G4double size = 3*cm;
-  G4double radius = size*(G4UniformRand()); 
-  G4double angle  = 2.0*3.14159*G4UniformRand();
-  G4double x0 = radius*cos(angle);
-  G4double y0 = radius*sin(angle);
-  G4double z0 = -0.5 * envSizeZ;
+  // // beam trajectory
+  // G4double size = 3*cm;
+  // G4double radius = size*(G4UniformRand()); 
+  // G4double angle  = 2.0*3.14159*G4UniformRand();
+  // G4double x0 = radius*cos(angle);
+  // G4double y0 = radius*sin(angle);
+  // G4double z0 = -0.5 * envSizeZ;
   
-  fParticleGun->SetParticlePosition(G4ThreeVector(x0,y0,z0));
+  // fParticleGun->SetParticlePosition(G4ThreeVector(x0,y0,z0));
 
-  // beam energy and type
-  G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
-  G4String particleName;
-  G4ParticleDefinition* particle
-    = particleTable->FindParticle(particleName="alpha");
-  fParticleGun->SetParticleDefinition(particle);
+  // // beam energy and type
+  // G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
+  // G4String particleName;
+  // G4ParticleDefinition* particle
+  //   = particleTable->FindParticle(particleName="alpha");
+  // fParticleGun->SetParticleDefinition(particle);
 
-  G4double emin = 1*keV; // ev
-  G4double emax = 10*MeV;  // ev
-  // you should make this log-scaled...
-  G4double part_energy = (emax - emin)*G4UniformRand() + emin;
-  fParticleGun->SetParticleEnergy(part_energy);
+  // G4double emin = 1*keV; // ev
+  // G4double emax = 10*MeV;  // ev
+  // // you should make this log-scaled...
+  // G4double part_energy = (emax - emin)*G4UniformRand() + emin;
+  // // fParticleGun->SetParticleEnergy(part_energy);
 
-  G4cout << "Energy is " << G4BestUnit(part_energy,"Energy");
+  // G4cout << "Energy is " << G4BestUnit(part_energy,"Energy");
+  // fParticleGun->GeneratePrimaryVertex(anEvent);
+
   fParticleGun->GeneratePrimaryVertex(anEvent);
+
+
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

@@ -163,7 +163,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   // Conical section shape       
   G4double shape2_rmina =  0.*cm, shape2_rmaxa = 4.*cm;
   G4double shape2_rminb =  0.*cm, shape2_rmaxb = 4.*cm;
-  G4double shape2_hz = 2*cm;
+  G4double shape2_hz = 10*cm;
   G4double shape2_phimin = 0.*deg, shape2_phimax = 360.*deg;
   G4Cons* solidShape2 =    
     new G4Cons("detector", 
