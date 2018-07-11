@@ -30,9 +30,10 @@
 
 #include "EventAction.hh"
 #include "RunAction.hh"
-
+    
 #include "G4Event.hh"
 #include "G4RunManager.hh"
+#include "G4SystemOfUnits.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -56,14 +57,25 @@ void EventAction::BeginOfEventAction(const G4Event*)
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void EventAction::EndOfEventAction(const G4Event*)
+void EventAction::EndOfEventAction(const G4Event* event)
 {  
-
 
   // accumulate statistics in run action
   fRunAction->AddEdep(fEdep);
+  // G4cout << "an event happened! edep is: " << fEdep << G4endl;
+  // G4cout << "An event happened! Accumulator has: " << fRunAction->fEdep.GetValue() << G4endl;
+  // G4cout << "Hey dude, this event consisted of " << fEdep << G4endl;
 
-  G4cout << "Hey dude, this event consisted of " << fEdep << G4endl;
+  // Log to ascii file  
+  // fRunAction->LogEntry(fEdep);
+
+
+  // Fill histograms
+  G4AnalysisManager* man = G4AnalysisManager::Instance();
+  man->FillH1(1,fEdep/keV);
+
+  G4double init_energy = event->GetPrimaryVertex()->GetPrimary()->GetKineticEnergy();
+  man->FillH1(2,init_energy/keV);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

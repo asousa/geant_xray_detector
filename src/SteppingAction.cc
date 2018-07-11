@@ -55,45 +55,25 @@ SteppingAction::~SteppingAction()
 void SteppingAction::UserSteppingAction(const G4Step* step)
 {
 
-  // G4bool entering = true;   // Log hits to ASCII file?
-  // G4Track* track = step->GetTrack();
-
-  // G4String volName; 
-  // if (track->GetVolume()) volName =  track->GetVolume()->GetName(); 
-  // G4String nextVolName;
-  // if (track->GetNextVolume()) nextVolName =  track->GetNextVolume()->GetName();
-
-  // DetectorAnalysis* analysis = DetectorAnalysis::getInstance();
- 
-  // // Entering Detector
-  // if (volName != "Detector_P" && nextVolName == "Detector_P") 
-  //   {
-  //     entering = true;
-  //     analysis->Update(track->GetKineticEnergy(),G4Threading::G4GetThreadId());
-  //   }
-
-  // analysis->analyzeStepping(*track,entering);
 
   if (!fScoringVolume) { 
-    const DetectorConstruction* detectorConstruction
-      = static_cast<const DetectorConstruction*>
-        (G4RunManager::GetRunManager()->GetUserDetectorConstruction());
+    const DetectorConstruction* detectorConstruction = static_cast<const DetectorConstruction*>(G4RunManager::GetRunManager()->GetUserDetectorConstruction());
     fScoringVolume = detectorConstruction->GetScoringVolume();   
   }
 
   // get volume of the current step
-  G4LogicalVolume* volume 
-    = step->GetPreStepPoint()->GetTouchableHandle()
-      ->GetVolume()->GetLogicalVolume();
+  G4LogicalVolume* volume = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetLogicalVolume();
       
   // check if we are in scoring volume
   if (volume != fScoringVolume) return;
 
   // collect energy deposited in this step
   G4double edepStep = step->GetTotalEnergyDeposit();
-  fEventAction->AddEdep(edepStep);  
+  fEventAction->AddEdep(edepStep);
 
-  G4cout << "hey! this step consisted of: " << edepStep << G4endl;
+
+
+  // G4cout << "hey! this step consisted of: " << edepStep << G4endl;
 
 }
 

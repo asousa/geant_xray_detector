@@ -33,6 +33,8 @@
 
 #include "G4UserEventAction.hh"
 #include "globals.hh"
+#include "G4AccumulableManager.hh"
+
 
 class RunAction;
 
@@ -53,6 +55,8 @@ class EventAction : public G4UserEventAction
   private:
     RunAction* fRunAction;
     G4double     fEdep;
+
+
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

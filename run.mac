@@ -9,25 +9,28 @@
 # Initialize kernel
 /run/initialize
 #
-/control/verbose 2
-/run/verbose 2
+/control/verbose 0
+/run/verbose 0
 /event/verbose 0
-/tracking/verbose 1
+/tracking/verbose 0
 # 
 
 # General Particle Source:
 
 /gps/particle e-
+/gps/position 0 0 -10 cm
+#/gps/pos/type Point
+/gps/direction 0 0 1
 /gps/pos/type Beam
 /gps/pos/shape Circle
-/gps/pos/radius 2. cm
-/gps/pos/sigma_r 1. cm
+/gps/pos/radius 2. mm
+/gps/pos/sigma_r 1. mm
 
-/gps/energy 1 MeV
+/gps/energy 10 MeV
 #/gps/ene/type Lin
-#/gps/ene/min 1. MeV
+#/gps/ene/min 100. keV
 #/gps/ene/max 10. MeV
-#/gps/ene/gradient 1.
+#/gps/ene/gradient 0.
 #/gps/ene/intercept 1
 
 /run/beamOn 100

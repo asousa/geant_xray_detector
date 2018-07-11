@@ -41,8 +41,9 @@
 #include "G4LogicalVolume.hh"
 #include "G4UnitsTable.hh"
 #include "G4SystemOfUnits.hh"
-
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+ 
+
 
 RunAction::RunAction()
 : G4UserRunAction(),
@@ -60,6 +61,40 @@ RunAction::RunAction()
 
   if(asciiFile->is_open()) 
     (*asciiFile) << "Hey! Write this header line please." << G4endl << G4endl;  
+
+
+  auto man = G4AnalysisManager::Instance();
+  G4cout << "Using " << man->GetType() << G4endl;
+
+  histFileName = "detector_hists";
+  // Open an output file: it is done in master and threads. The 
+  // printout is done only by the master, for tidyness
+  // if (isMaster)
+  //   G4cout << "Opening output file " << histFileName << " ... ";
+  // man->OpenFile(histFileName);
+  man->SetFirstHistoId(1);
+  if (isMaster)
+    G4cout << " done" << G4endl;
+
+  // Book 1D histograms
+  man->CreateH1("h1","Energy, in detector /keV",  100,1.,10000.);
+  man->CreateH1("h2","Energy, from source /keV",  100,1.,10000.);
+
+  // // Book 2D histograms (notice: the numbering is independent)
+  // man->CreateH2("d1","y-z, all /mm", 100,-500.,500.,100,-500.,500.); 
+  // man->CreateH2("d2","y-z, entering detector /mm", 200,-50.,50.,200,-50.,50.);
+  
+  // // Book ntuples
+  // man->CreateNtuple("tree", "Track ntuple");
+  // man->CreateNtupleDColumn("energy");
+  // man->CreateNtupleDColumn("x");
+  // man->CreateNtupleDColumn("y");
+  // man->CreateNtupleDColumn("z");
+  // man->CreateNtupleDColumn("dirx");
+  // man->CreateNtupleDColumn("diry");
+  // man->CreateNtupleDColumn("dirz");
+  // man->FinishNtuple();
+
 
 }
 
@@ -79,11 +114,9 @@ void RunAction::BeginOfRunAction(const G4Run*)
   G4AccumulableManager* accumulableManager = G4AccumulableManager::Instance();
   accumulableManager->Reset();
 
-
-  // // Analysis setup:
-  // DetectorAnalysis* analysis = DetectorAnalysis::getInstance();
-  // analysis->book(IsMaster());
-
+  // Get/create analysis manager
+  auto man = G4AnalysisManager::Instance();
+  man->OpenFile(histFileName);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -91,8 +124,6 @@ void RunAction::BeginOfRunAction(const G4Run*)
 void RunAction::EndOfRunAction(const G4Run* run)
 {
 
-  // DetectorAnalysis* analysis = DetectorAnalysis::getInstance();
-  // analysis->finish(IsMaster());
 
   G4int nofEvents = run->GetNumberOfEvent();
   if (nofEvents == 0) return;
@@ -102,27 +133,19 @@ void RunAction::EndOfRunAction(const G4Run* run)
   accumulableManager->Merge();
 
   // Compute dose = total energy deposit in a run and its variance
-  //
   G4double edep  = fEdep.GetValue();
   G4double edep2 = fEdep2.GetValue();
   
   G4double rms = edep2 - edep*edep/nofEvents;
   if (rms > 0.) rms = std::sqrt(rms); else rms = 0.;  
 
-  const DetectorConstruction* detectorConstruction
-   = static_cast<const DetectorConstruction*>
-     (G4RunManager::GetRunManager()->GetUserDetectorConstruction());
-  G4double mass = detectorConstruction->GetScoringVolume()->GetMass();
-  // G4double dose = edep/mass;
-  // G4double rmsDose = rms/mass;
+  // const DetectorConstruction* detectorConstruction = static_cast<const DetectorConstruction*> (G4RunManager::GetRunManager()->GetUserDetectorConstruction());
 
   // Run conditions
-  //  note: There is no primary generator action object for "master"
-  //        run manager for multi-threaded mode.
-  const PrimaryGeneratorAction* generatorAction
-   = static_cast<const PrimaryGeneratorAction*>
-     (G4RunManager::GetRunManager()->GetUserPrimaryGeneratorAction());
+  //  note: There is no primary generator action object for "master" - run manager for multi-threaded mode.
+  const PrimaryGeneratorAction* generatorAction = static_cast<const PrimaryGeneratorAction*> (G4RunManager::GetRunManager()->GetUserPrimaryGeneratorAction());
   G4String runCondition;
+
   if (generatorAction)
   {
     const G4GeneralParticleSource* particleGun = generatorAction->GetParticleGun();
@@ -131,26 +154,13 @@ void RunAction::EndOfRunAction(const G4Run* run)
     G4double particleEnergy = particleGun->GetParticleEnergy();
     runCondition += G4BestUnit(particleEnergy,"Energy");
   }
-        
-  // Print
-  if (IsMaster()) {
-  //only master performs these operations
-  asciiFile->close();
 
-  }
   //  
   if (IsMaster()) {
     G4cout
      << G4endl
      << "--------------------End of Global Run-----------------------";
-  }
-  else {
     G4cout
-     << G4endl
-     << "--------------------End of Local Run------------------------";
-  }
-  
-  G4cout
      << G4endl
      << " The run consists of " << nofEvents << " "<< runCondition
      << G4endl
@@ -161,6 +171,11 @@ void RunAction::EndOfRunAction(const G4Run* run)
      << "------------------------------------------------------------"
      << G4endl
      << G4endl;
+   }
+
+    auto man = G4AnalysisManager::Instance();
+    man->Write();
+    man->CloseFile();
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -172,5 +187,17 @@ void RunAction::AddEdep(G4double edep)
 }
 
 
+void RunAction::LogEntry(G4double edep)
+{
+    G4cout << "log action happened!"<<G4endl;
+    // if(asciiFile->is_open()) {
+      (*asciiFile) << std::setiosflags(std::ios::fixed)
+       << std::setprecision(3)
+       << std::setiosflags(std::ios::right)
+       << std::setw(10);
+      (*asciiFile) << edep << G4endl;
+    // }
+
+}
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 

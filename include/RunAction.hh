@@ -35,6 +35,11 @@
 #include "G4Accumulable.hh"
 #include "globals.hh"
 
+// Choose your fighter:
+// #include "g4root.hh"
+#include "g4xml.hh"
+// #include "g4csv.hh"
+
 class G4Run;
 
 /// Run action class
@@ -54,6 +59,9 @@ class RunAction : public G4UserRunAction
     virtual void   EndOfRunAction(const G4Run*);
 
     void AddEdep (G4double edep); 
+    void LogEntry (G4double edep);
+
+
 
   private:
     G4Accumulable<G4double> fEdep;
@@ -61,6 +69,8 @@ class RunAction : public G4UserRunAction
 
     G4String asciiFileName;
     std::ofstream *asciiFile;
+
+    G4String histFileName;
 
 };
 

@@ -124,46 +124,46 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
                     0,                       //copy number
                     checkOverlaps);          //overlaps checking
  
-  //     
+      
   // Shape 1
-  //  
-  // G4Material* shape1_mat = nist->FindOrBuildMaterial("G4_W");
-  // G4ThreeVector pos1 = G4ThreeVector(0, 0, 0);
+   
+  G4Material* shape1_mat = nist->FindOrBuildMaterial("G4_W");
+  G4ThreeVector pos1 = G4ThreeVector(0, 0, -3*cm);
         
-  // // Conical section shape       
-  // G4double shape1_rmina =  0.*cm, shape1_rmaxa = 4.*cm;
-  // G4double shape1_rminb =  0.*cm, shape1_rmaxb = 4.*cm;
-  // G4double shape1_hz = 0.1*mm;
-  // G4double shape1_phimin = 0.*deg, shape1_phimax = 360.*deg;
-  // G4Cons* solidShape1 =    
-  //   new G4Cons("window", 
-  //   shape1_rmina, shape1_rmaxa, shape1_rminb, shape1_rmaxb, shape1_hz,
-  //   shape1_phimin, shape1_phimax);
+  // Conical section shape       
+  G4double shape1_rmina =  0.*cm, shape1_rmaxa = 4.*cm;
+  G4double shape1_rminb =  0.*cm, shape1_rmaxb = 4.*cm;
+  G4double shape1_hz = 0.5*mm;
+  G4double shape1_phimin = 0.*deg, shape1_phimax = 360.*deg;
+  G4Cons* solidShape1 =    
+    new G4Cons("window", 
+    shape1_rmina, shape1_rmaxa, shape1_rminb, shape1_rmaxb, shape1_hz,
+    shape1_phimin, shape1_phimax);
                       
-  // G4LogicalVolume* windowShape =                         
-  //   new G4LogicalVolume(solidShape1,         //its solid
-  //                       shape1_mat,          //its material
-  //                       "window");           //its name
+  G4LogicalVolume* windowShape =                         
+    new G4LogicalVolume(solidShape1,         //its solid
+                        shape1_mat,          //its material
+                        "window");           //its name
                
-  // new G4PVPlacement(0,                       //no rotation
-  //                   pos1,                    //at position
-  //                   windowShape,             //its logical volume
-  //                   "window",                //its name
-  //                   logicEnv,                //its mother  volume
-  //                   false,                   //no boolean operation
-  //                   0,                       //copy number
-  //                   checkOverlaps);          //overlaps checking
+  new G4PVPlacement(0,                       //no rotation
+                    pos1,                    //at position
+                    windowShape,             //its logical volume
+                    "window",                //its name
+                    logicEnv,                //its mother  volume
+                    false,                   //no boolean operation
+                    0,                       //copy number
+                    checkOverlaps);          //overlaps checking
 
   //     
   // Shape 2
   //
   G4Material* shape2_mat = nist->FindOrBuildMaterial("G4_Si");
-  G4ThreeVector pos2 = G4ThreeVector(0, 0, 3*cm);
+  G4ThreeVector pos2 = G4ThreeVector(0, 0, 1.*cm);
 
   // Conical section shape       
   G4double shape2_rmina =  0.*cm, shape2_rmaxa = 4.*cm;
   G4double shape2_rminb =  0.*cm, shape2_rmaxb = 4.*cm;
-  G4double shape2_hz = 10*cm;
+  G4double shape2_hz = 2.*cm;
   G4double shape2_phimin = 0.*deg, shape2_phimax = 360.*deg;
   G4Cons* solidShape2 =    
     new G4Cons("detector", 
