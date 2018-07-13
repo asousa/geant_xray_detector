@@ -33,6 +33,7 @@
 #include "DetectorConstruction.hh"
 // #include "DetectorAnalysis.hh"
 #include "G4Step.hh"
+#include "G4Track.hh"
 #include "G4Event.hh"
 #include "G4RunManager.hh"
 #include "G4LogicalVolume.hh"
@@ -41,8 +42,7 @@
 
 SteppingAction::SteppingAction(EventAction* eventAction)
 : G4UserSteppingAction(),
-  fEventAction(eventAction),
-  fScoringVolume(0)
+  fEventAction(eventAction)
 {}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -55,22 +55,32 @@ SteppingAction::~SteppingAction()
 void SteppingAction::UserSteppingAction(const G4Step* step)
 {
 
+  G4bool isEnteringDetector;
+  G4Track* track = step->GetTrack();
 
-  if (!fScoringVolume) { 
-    const DetectorConstruction* detectorConstruction = static_cast<const DetectorConstruction*>(G4RunManager::GetRunManager()->GetUserDetectorConstruction());
-    fScoringVolume = detectorConstruction->GetScoringVolume();   
-  }
+  G4String volName;
+  if (track->GetVolume()) volName =  track->GetVolume()->GetName(); 
+  G4String nextVolName;
+  if (track->GetNextVolume()) nextVolName =  track->GetNextVolume()->GetName();
 
-  // get volume of the current step
-  G4LogicalVolume* volume = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetLogicalVolume();
+  // if (!fScoringVolume) { 
+  //   const DetectorConstruction* detectorConstruction = static_cast<const DetectorConstruction*>(G4RunManager::GetRunManager()->GetUserDetectorConstruction());
+  //   fScoringVolume = detectorConstruction->GetScoringVolume();   
+  // }
+
+  // // get volume of the current step
+  // G4LogicalVolume* volume = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetLogicalVolume();
       
-  // check if we are in scoring volume
-  if (volume != fScoringVolume) return;
 
-  // collect energy deposited in this step
-  G4double edepStep = step->GetTotalEnergyDeposit();
-  fEventAction->AddEdep(edepStep);
-
+  // Check if the particle just entered the detector
+  isEnteringDetector= (volName != "detector0" && nextVolName =="detector0");
+  // // check if we are in scoring volume
+  // if (volume != fScoringVolume) return;
+  if (volName =="detector0") {
+    // collect energy deposited in this step
+    G4double edepStep = step->GetTotalEnergyDeposit();
+    fEventAction->AddEdep(edepStep);
+  }
 
 
   // G4cout << "hey! this step consisted of: " << edepStep << G4endl;

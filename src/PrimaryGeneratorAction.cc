@@ -46,8 +46,7 @@
 
 PrimaryGeneratorAction::PrimaryGeneratorAction()
 : G4VUserPrimaryGeneratorAction(),
-  fParticleGun(0), 
-  fEnvelopeBox(0)
+  fParticleGun(0)
 {
   // G4int n_particle = 1;
   fParticleGun  = new G4GeneralParticleSource();
