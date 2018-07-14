@@ -41,6 +41,8 @@
 #include "G4LogicalVolume.hh"
 #include "G4UnitsTable.hh"
 #include "G4SystemOfUnits.hh"
+// #include "HistoManager.hh"
+
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
  
 
@@ -55,12 +57,12 @@ RunAction::RunAction()
   accumulableManager->RegisterAccumulable(fEdep);
   accumulableManager->RegisterAccumulable(fEdep2); 
 
-  // Set up the ASCII log file
-  asciiFileName="detector_ascii.out";
-  asciiFile = new std::ofstream(asciiFileName);
+  // // Set up the ASCII log file
+  // asciiFileName="detector_ascii.out";
+  // asciiFile = new std::ofstream(asciiFileName);
 
-  if(asciiFile->is_open()) 
-    (*asciiFile) << "Hey! Write this header line please." << G4endl << G4endl;  
+  // if(asciiFile->is_open()) 
+  //   (*asciiFile) << "Hey! Write this header line please." << G4endl << G4endl;  
 
 
   auto man = G4AnalysisManager::Instance();
@@ -76,25 +78,11 @@ RunAction::RunAction()
   if (isMaster)
     G4cout << " done" << G4endl;
 
+  // G4double e_lower_lim = 100; // keV
+  // G4double e_upper_lim = 1000; // keV
   // Book 1D histograms
-  man->CreateH1("h1","Energy, in detector /keV",  100,1.,10000.);
-  man->CreateH1("h2","Energy, from source /keV",  100,1.,10000.);
-
-  // // Book 2D histograms (notice: the numbering is independent)
-  // man->CreateH2("d1","y-z, all /mm", 100,-500.,500.,100,-500.,500.); 
-  // man->CreateH2("d2","y-z, entering detector /mm", 200,-50.,50.,200,-50.,50.);
-  
-  // // Book ntuples
-  // man->CreateNtuple("tree", "Track ntuple");
-  // man->CreateNtupleDColumn("energy");
-  // man->CreateNtupleDColumn("x");
-  // man->CreateNtupleDColumn("y");
-  // man->CreateNtupleDColumn("z");
-  // man->CreateNtupleDColumn("dirx");
-  // man->CreateNtupleDColumn("diry");
-  // man->CreateNtupleDColumn("dirz");
-  // man->FinishNtuple();
-
+  // man->CreateH1("0","Energy, in detector log(/keV)",  100,e_lower_lim, e_upper_lim);
+  // man->CreateH1("1","Energy, from source log(/keV)",  100,e_lower_lim, e_upper_lim);
 
 }
 
@@ -116,7 +104,7 @@ void RunAction::BeginOfRunAction(const G4Run*)
 
   // Get/create analysis manager
   auto man = G4AnalysisManager::Instance();
-  man->OpenFile(histFileName);
+  man->OpenFile();
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

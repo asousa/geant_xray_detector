@@ -74,13 +74,14 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
 
   // Check if the particle just entered the detector
   isEnteringDetector= (volName != "detector0" && nextVolName =="detector0");
-  // // check if we are in scoring volume
-  // if (volume != fScoringVolume) return;
-  if (volName =="detector0") {
+
     // collect energy deposited in this step
-    G4double edepStep = step->GetTotalEnergyDeposit();
-    fEventAction->AddEdep(edepStep);
-  }
+  G4double edepStep = step->GetTotalEnergyDeposit();
+
+  // Add energy deposition (split up per volume in EventAction)
+  // fEventAction->AddEdep(edepStep);
+  fEventAction->AddEdep_multiple(volName, edepStep);
+
 
 
   // G4cout << "hey! this step consisted of: " << edepStep << G4endl;

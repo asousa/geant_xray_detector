@@ -40,7 +40,8 @@
 EventAction::EventAction(RunAction* runAction)
 : G4UserEventAction(),
   fRunAction(runAction),
-  fEdep(0.)
+  fEdep(0.),
+  fEdep_side(0.)
 {} 
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -50,9 +51,24 @@ EventAction::~EventAction()
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
+
+void EventAction::AddEdep(G4double edep)
+{
+    edep += fEdep;
+}
+
+void EventAction::AddEdep_multiple(G4String solid, G4double edep)
+{
+    if (solid =="detector0"){ fEdep += edep;}
+    if (solid =="detector1"){ fEdep_side += edep;}
+}
+
+
+
 void EventAction::BeginOfEventAction(const G4Event*)
 {    
   fEdep = 0.;
+  fEdep_side = 0.;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -69,13 +85,20 @@ void EventAction::EndOfEventAction(const G4Event* event)
   // Log to ascii file  
   // fRunAction->LogEntry(fEdep);
 
+  G4AnalysisManager* man = G4AnalysisManager::Instance();
 
   // Fill histograms
-  G4AnalysisManager* man = G4AnalysisManager::Instance();
-  man->FillH1(1,fEdep/keV);
-
+  // Source:
   G4double init_energy = event->GetPrimaryVertex()->GetPrimary()->GetKineticEnergy();
-  man->FillH1(2,init_energy/keV);
+  man->FillH1(1,init_energy);
+
+  // Central detector:
+  man->FillH1(2,fEdep);
+
+  // Side detector:
+  man->FillH1(3,fEdep_side);
+
+
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

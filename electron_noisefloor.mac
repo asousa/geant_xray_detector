@@ -1,0 +1,75 @@
+# Background electron noise floor:
+
+# Disable all the chatter
+/run/initialize
+/control/verbose 0
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+# General particle source:
+
+/gps/particle e-
+#/gps/position 0 0 2.5 cm
+#/gps/direction 0 0 -1
+
+# 0 deg offset
+/gps/position  0  0  5 cm
+/gps/direction  0  0 -1 cm
+
+# -1 deg offset
+/gps/position  0 -0.04363  5 cm
+/gps/direction  0 0.01745 -0.9998 cm
+
+# -2 deg offset
+/gps/position  0 -0.08725 4.998 cm
+/gps/direction  0 0.0349 -0.9994 cm
+
+# -3 deg offset
+/gps/position  0 -0.1308 4.997 cm
+/gps/direction  0 0.05234 -0.9986 cm
+
+# -4 deg offset
+/gps/position  0 -0.1744 4.994 cm
+/gps/direction  0 0.06976 -0.9976 cm
+
+# -5 deg offset
+/gps/position  0 -0.2179 4.99 cm
+/gps/direction  0 0.08716 -0.9962 cm
+
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1. mm
+#/gps/pos/sigma_r 1. mm
+
+# Single energy
+#/gps/energy 10 keV
+
+# Linear distribution
+#/gps/ene/type Lin
+#/gps/ene/min 10. keV
+#/gps/ene/max 1. MeV
+#/gps/ene/gradient 0.
+#/gps/ene/intercept 1
+
+# Exponential distribution
+/gps/ene/type Exp
+/gps/ene/min 1. keV
+/gps/ene/max 10000. keV
+/gps/ene/ezero 0.3  # (This seems to be in MeV no matter what I do) 
+
+
+# Gaussian distribution
+#/gps/ene/type Gauss
+#/gps/ene/mono 1 keV
+#/gps/ene/sigma 1 keV
+
+# Histograms:
+/analysis/setFileName doop
+
+/analysis/h1/create "h1" "Energy, from source, kev" 500 1 1000 keV 
+/analysis/h1/create "h2" "Energy, main detector, kev" 500 1 1000 keV 
+/analysis/h1/create "h3" "Energy, side detector, kev" 500 1 1000 keV 
+
+/run/beamOn 50
+
