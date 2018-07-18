@@ -40,7 +40,10 @@
 #include "G4UImanager.hh"
 // #include "QBBC.hh"
 // #include "QGSP_BIC_HP.hh"
-#include "FTFP_BERT.hh" 
+#include "FTFP_BERT.hh"
+#include "G4EmLivermorePhysics.hh"
+#include "G4PhysListFactory.hh"
+
 
 #include "G4VisExecutive.hh"
 #include "G4UIExecutive.hh"
@@ -80,7 +83,9 @@ int main(int argc,char** argv)
   // G4ScoringManager* scoringManager = G4ScoringManager::GetScoringManager();
 
   // Physics list
-  G4VModularPhysicsList* physicsList = new FTFP_BERT; //QBBC;
+  // G4VModularPhysicsList* physicsList = new FTFP_BERT; //QBBC;
+  G4PhysListFactory factory; 
+  G4VModularPhysicsList* physicsList = factory.GetReferencePhysList("FTFP_BERT_LIV");
   physicsList->SetVerboseLevel(1);
   runManager->SetUserInitialization(physicsList);
     

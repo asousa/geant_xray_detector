@@ -57,7 +57,8 @@ class EventAction : public G4UserEventAction
   private:
     RunAction* fRunAction;
     G4double     fEdep;
-    G4double     fEdep_side;
+    G4double     fEdep_right;
+    G4double     fEdep_left;
 
 
 };

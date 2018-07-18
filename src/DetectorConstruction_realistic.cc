@@ -128,12 +128,12 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
   G4double detector_dimX = 20/2.*mm;
   G4double detector_dimY = 2.2/2.*mm;
-  G4double detector_dimZ = 1/2.*cm;
+  G4double detector_dimZ = 5./2.*mm;
   G4double baffle_thickness = 0.5/2.*mm;
   G4double baffle_height    = 20/2.*mm;
 
   G4int n_detectors_right = 1;
-  G4int n_detectors_left  = 0;
+  G4int n_detectors_left  = 1;
 
   
 
@@ -169,7 +169,18 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   // ----------------------------------------------------------------
   // Detector elements:
   // ----------------------------------------------------------------
-  G4Material* detector_mat = nist->FindOrBuildMaterial("G4_Si");
+  // G4Material* detector_mat = nist->FindOrBuildMaterial("G4_Si");
+
+  G4Element* Cd = new G4Element("Cadmium","Cd",48., 112.41*g/mole);
+  G4Element* Zn = new G4Element("Zinc","Zn", 30., 65.38*g/mole);
+  G4Element* Te = new G4Element("Tellurium","Te", 52., 127.60*g/mole);
+  G4Material* CZT = new G4Material("CZT", 5.8*g/cm3, 3);
+  CZT->AddElement(Cd, 48*perCent);
+  CZT->AddElement(Zn, 02*perCent);
+  CZT->AddElement(Te, 50*perCent);
+
+
+
   G4ThreeVector detector_pos  = G4ThreeVector(0, 0, 0);
   // // G4ThreeVector detector_pos2 = G4ThreeVector(0,  2*detector_dimY + 2*baffle_thickness, 0);
   // G4ThreeVector detector_pos3 = G4ThreeVector(0, -2*detector_dimY - 2*baffle_thickness, 0);
@@ -187,7 +198,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
     G4LogicalVolume* detector =                         
     new G4LogicalVolume(detector_solid,      //its solid
-                        detector_mat,        //its material
+                        CZT,        //its material
                         detname.str());         //its name
                
     new G4PVPlacement(0,                       //no rotation
