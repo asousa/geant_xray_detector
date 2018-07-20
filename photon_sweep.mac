@@ -8,7 +8,7 @@
 /gps/particle gamma
 /gps/pos/type Plane
 /gps/pos/shape Circle
-/gps/pos/radius 1. mm
+/gps/pos/radius 2.2 mm
 
 /run/setCut 0.01 mm
 /analysis/h1/create "h1" "Energy, from source,    ev" 100 30000 2000000 eV log10
@@ -16,11 +16,29 @@
 /analysis/h1/create "h3" "Energy, right detector, ev" 100 30000 2000000 eV log10
 /analysis/h1/create "h4" "Energy, left detector,  ev" 100 30000 2000000 eV log10
 
+/analysis/h1/create "h4" "Energy, right detector 2,  ev" 100 30000 2000000 eV log10
+
 # 30000 eV energy, 0 degree offset
 /gps/energy 30000 eV
 /gps/position  0  0 4.5 cm
 /gps/direction  0  0 -1 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_30000_ev_0_deg
+
+/run/beamOn 100000
+
+# 30000 eV energy, -1 degree offset
+/gps/energy 30000 eV
+/gps/position  0 -0.0349 4.5 cm
+/gps/direction  0 0.01745 -0.9998 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_30000_ev_-1_deg
 
 /run/beamOn 100000
 
@@ -28,7 +46,23 @@
 /gps/energy 30000 eV
 /gps/position  0 -0.0698 4.499 cm
 /gps/direction  0 0.0349 -0.9994 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_30000_ev_-2_deg
+
+/run/beamOn 100000
+
+# 30000 eV energy, -3 degree offset
+/gps/energy 30000 eV
+/gps/position  0 -0.1047 4.497 cm
+/gps/direction  0 0.05234 -0.9986 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_30000_ev_-3_deg
 
 /run/beamOn 100000
 
@@ -36,7 +70,23 @@
 /gps/energy 30000 eV
 /gps/position  0 -0.1395 4.495 cm
 /gps/direction  0 0.06976 -0.9976 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_30000_ev_-4_deg
+
+/run/beamOn 100000
+
+# 30000 eV energy, -5 degree offset
+/gps/energy 30000 eV
+/gps/position  0 -0.1743 4.492 cm
+/gps/direction  0 0.08716 -0.9962 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_30000_ev_-5_deg
 
 /run/beamOn 100000
 
@@ -44,7 +94,23 @@
 /gps/energy 30000 eV
 /gps/position  0 -0.2091 4.489 cm
 /gps/direction  0 0.1045 -0.9945 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_30000_ev_-6_deg
+
+/run/beamOn 100000
+
+# 30000 eV energy, -7 degree offset
+/gps/energy 30000 eV
+/gps/position  0 -0.2437 4.485 cm
+/gps/direction  0 0.1219 -0.9925 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_30000_ev_-7_deg
 
 /run/beamOn 100000
 
@@ -52,7 +118,143 @@
 /gps/energy 30000 eV
 /gps/position  0 -0.2783 4.481 cm
 /gps/direction  0 0.1392 -0.9903 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_30000_ev_-8_deg
+
+/run/beamOn 100000
+
+# 30000 eV energy, -9 degree offset
+/gps/energy 30000 eV
+/gps/position  0 -0.3129 4.475 cm
+/gps/direction  0 0.1564 -0.9877 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_30000_ev_-9_deg
+
+/run/beamOn 100000
+
+# 30000 eV energy, -10 degree offset
+/gps/energy 30000 eV
+/gps/position  0 -0.3473 4.47 cm
+/gps/direction  0 0.1736 -0.9848 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_30000_ev_-10_deg
+
+/run/beamOn 100000
+
+# 30000 eV energy, -11 degree offset
+/gps/energy 30000 eV
+/gps/position  0 -0.3816 4.463 cm
+/gps/direction  0 0.1908 -0.9816 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_30000_ev_-11_deg
+
+/run/beamOn 100000
+
+# 30000 eV energy, -12 degree offset
+/gps/energy 30000 eV
+/gps/position  0 -0.4158 4.456 cm
+/gps/direction  0 0.2079 -0.9781 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_30000_ev_-12_deg
+
+/run/beamOn 100000
+
+# 30000 eV energy, -13 degree offset
+/gps/energy 30000 eV
+/gps/position  0 -0.4499 4.449 cm
+/gps/direction  0 0.225 -0.9744 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_30000_ev_-13_deg
+
+/run/beamOn 100000
+
+# 30000 eV energy, -14 degree offset
+/gps/energy 30000 eV
+/gps/position  0 -0.4838 4.441 cm
+/gps/direction  0 0.2419 -0.9703 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_30000_ev_-14_deg
+
+/run/beamOn 100000
+
+# 30000 eV energy, -15 degree offset
+/gps/energy 30000 eV
+/gps/position  0 -0.5176 4.432 cm
+/gps/direction  0 0.2588 -0.9659 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_30000_ev_-15_deg
+
+/run/beamOn 100000
+
+# 30000 eV energy, -16 degree offset
+/gps/energy 30000 eV
+/gps/position  0 -0.5513 4.423 cm
+/gps/direction  0 0.2756 -0.9613 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_30000_ev_-16_deg
+
+/run/beamOn 100000
+
+# 30000 eV energy, -17 degree offset
+/gps/energy 30000 eV
+/gps/position  0 -0.5847 4.413 cm
+/gps/direction  0 0.2924 -0.9563 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_30000_ev_-17_deg
+
+/run/beamOn 100000
+
+# 30000 eV energy, -18 degree offset
+/gps/energy 30000 eV
+/gps/position  0 -0.618 4.402 cm
+/gps/direction  0 0.309 -0.9511 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_30000_ev_-18_deg
+
+/run/beamOn 100000
+
+# 30000 eV energy, -19 degree offset
+/gps/energy 30000 eV
+/gps/position  0 -0.6511 4.391 cm
+/gps/direction  0 0.3256 -0.9455 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_30000_ev_-19_deg
 
 /run/beamOn 100000
 
@@ -60,7 +262,23 @@
 /gps/energy 100000 eV
 /gps/position  0  0 4.5 cm
 /gps/direction  0  0 -1 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_100000_ev_0_deg
+
+/run/beamOn 100000
+
+# 100000 eV energy, -1 degree offset
+/gps/energy 100000 eV
+/gps/position  0 -0.0349 4.5 cm
+/gps/direction  0 0.01745 -0.9998 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_100000_ev_-1_deg
 
 /run/beamOn 100000
 
@@ -68,7 +286,23 @@
 /gps/energy 100000 eV
 /gps/position  0 -0.0698 4.499 cm
 /gps/direction  0 0.0349 -0.9994 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_100000_ev_-2_deg
+
+/run/beamOn 100000
+
+# 100000 eV energy, -3 degree offset
+/gps/energy 100000 eV
+/gps/position  0 -0.1047 4.497 cm
+/gps/direction  0 0.05234 -0.9986 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_100000_ev_-3_deg
 
 /run/beamOn 100000
 
@@ -76,7 +310,23 @@
 /gps/energy 100000 eV
 /gps/position  0 -0.1395 4.495 cm
 /gps/direction  0 0.06976 -0.9976 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_100000_ev_-4_deg
+
+/run/beamOn 100000
+
+# 100000 eV energy, -5 degree offset
+/gps/energy 100000 eV
+/gps/position  0 -0.1743 4.492 cm
+/gps/direction  0 0.08716 -0.9962 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_100000_ev_-5_deg
 
 /run/beamOn 100000
 
@@ -84,7 +334,23 @@
 /gps/energy 100000 eV
 /gps/position  0 -0.2091 4.489 cm
 /gps/direction  0 0.1045 -0.9945 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_100000_ev_-6_deg
+
+/run/beamOn 100000
+
+# 100000 eV energy, -7 degree offset
+/gps/energy 100000 eV
+/gps/position  0 -0.2437 4.485 cm
+/gps/direction  0 0.1219 -0.9925 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_100000_ev_-7_deg
 
 /run/beamOn 100000
 
@@ -92,7 +358,143 @@
 /gps/energy 100000 eV
 /gps/position  0 -0.2783 4.481 cm
 /gps/direction  0 0.1392 -0.9903 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_100000_ev_-8_deg
+
+/run/beamOn 100000
+
+# 100000 eV energy, -9 degree offset
+/gps/energy 100000 eV
+/gps/position  0 -0.3129 4.475 cm
+/gps/direction  0 0.1564 -0.9877 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_100000_ev_-9_deg
+
+/run/beamOn 100000
+
+# 100000 eV energy, -10 degree offset
+/gps/energy 100000 eV
+/gps/position  0 -0.3473 4.47 cm
+/gps/direction  0 0.1736 -0.9848 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_100000_ev_-10_deg
+
+/run/beamOn 100000
+
+# 100000 eV energy, -11 degree offset
+/gps/energy 100000 eV
+/gps/position  0 -0.3816 4.463 cm
+/gps/direction  0 0.1908 -0.9816 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_100000_ev_-11_deg
+
+/run/beamOn 100000
+
+# 100000 eV energy, -12 degree offset
+/gps/energy 100000 eV
+/gps/position  0 -0.4158 4.456 cm
+/gps/direction  0 0.2079 -0.9781 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_100000_ev_-12_deg
+
+/run/beamOn 100000
+
+# 100000 eV energy, -13 degree offset
+/gps/energy 100000 eV
+/gps/position  0 -0.4499 4.449 cm
+/gps/direction  0 0.225 -0.9744 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_100000_ev_-13_deg
+
+/run/beamOn 100000
+
+# 100000 eV energy, -14 degree offset
+/gps/energy 100000 eV
+/gps/position  0 -0.4838 4.441 cm
+/gps/direction  0 0.2419 -0.9703 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_100000_ev_-14_deg
+
+/run/beamOn 100000
+
+# 100000 eV energy, -15 degree offset
+/gps/energy 100000 eV
+/gps/position  0 -0.5176 4.432 cm
+/gps/direction  0 0.2588 -0.9659 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_100000_ev_-15_deg
+
+/run/beamOn 100000
+
+# 100000 eV energy, -16 degree offset
+/gps/energy 100000 eV
+/gps/position  0 -0.5513 4.423 cm
+/gps/direction  0 0.2756 -0.9613 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_100000_ev_-16_deg
+
+/run/beamOn 100000
+
+# 100000 eV energy, -17 degree offset
+/gps/energy 100000 eV
+/gps/position  0 -0.5847 4.413 cm
+/gps/direction  0 0.2924 -0.9563 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_100000_ev_-17_deg
+
+/run/beamOn 100000
+
+# 100000 eV energy, -18 degree offset
+/gps/energy 100000 eV
+/gps/position  0 -0.618 4.402 cm
+/gps/direction  0 0.309 -0.9511 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_100000_ev_-18_deg
+
+/run/beamOn 100000
+
+# 100000 eV energy, -19 degree offset
+/gps/energy 100000 eV
+/gps/position  0 -0.6511 4.391 cm
+/gps/direction  0 0.3256 -0.9455 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_100000_ev_-19_deg
 
 /run/beamOn 100000
 
@@ -100,7 +502,23 @@
 /gps/energy 200000 eV
 /gps/position  0  0 4.5 cm
 /gps/direction  0  0 -1 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_200000_ev_0_deg
+
+/run/beamOn 100000
+
+# 200000 eV energy, -1 degree offset
+/gps/energy 200000 eV
+/gps/position  0 -0.0349 4.5 cm
+/gps/direction  0 0.01745 -0.9998 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_200000_ev_-1_deg
 
 /run/beamOn 100000
 
@@ -108,7 +526,23 @@
 /gps/energy 200000 eV
 /gps/position  0 -0.0698 4.499 cm
 /gps/direction  0 0.0349 -0.9994 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_200000_ev_-2_deg
+
+/run/beamOn 100000
+
+# 200000 eV energy, -3 degree offset
+/gps/energy 200000 eV
+/gps/position  0 -0.1047 4.497 cm
+/gps/direction  0 0.05234 -0.9986 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_200000_ev_-3_deg
 
 /run/beamOn 100000
 
@@ -116,7 +550,23 @@
 /gps/energy 200000 eV
 /gps/position  0 -0.1395 4.495 cm
 /gps/direction  0 0.06976 -0.9976 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_200000_ev_-4_deg
+
+/run/beamOn 100000
+
+# 200000 eV energy, -5 degree offset
+/gps/energy 200000 eV
+/gps/position  0 -0.1743 4.492 cm
+/gps/direction  0 0.08716 -0.9962 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_200000_ev_-5_deg
 
 /run/beamOn 100000
 
@@ -124,7 +574,23 @@
 /gps/energy 200000 eV
 /gps/position  0 -0.2091 4.489 cm
 /gps/direction  0 0.1045 -0.9945 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_200000_ev_-6_deg
+
+/run/beamOn 100000
+
+# 200000 eV energy, -7 degree offset
+/gps/energy 200000 eV
+/gps/position  0 -0.2437 4.485 cm
+/gps/direction  0 0.1219 -0.9925 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_200000_ev_-7_deg
 
 /run/beamOn 100000
 
@@ -132,7 +598,143 @@
 /gps/energy 200000 eV
 /gps/position  0 -0.2783 4.481 cm
 /gps/direction  0 0.1392 -0.9903 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_200000_ev_-8_deg
+
+/run/beamOn 100000
+
+# 200000 eV energy, -9 degree offset
+/gps/energy 200000 eV
+/gps/position  0 -0.3129 4.475 cm
+/gps/direction  0 0.1564 -0.9877 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_200000_ev_-9_deg
+
+/run/beamOn 100000
+
+# 200000 eV energy, -10 degree offset
+/gps/energy 200000 eV
+/gps/position  0 -0.3473 4.47 cm
+/gps/direction  0 0.1736 -0.9848 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_200000_ev_-10_deg
+
+/run/beamOn 100000
+
+# 200000 eV energy, -11 degree offset
+/gps/energy 200000 eV
+/gps/position  0 -0.3816 4.463 cm
+/gps/direction  0 0.1908 -0.9816 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_200000_ev_-11_deg
+
+/run/beamOn 100000
+
+# 200000 eV energy, -12 degree offset
+/gps/energy 200000 eV
+/gps/position  0 -0.4158 4.456 cm
+/gps/direction  0 0.2079 -0.9781 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_200000_ev_-12_deg
+
+/run/beamOn 100000
+
+# 200000 eV energy, -13 degree offset
+/gps/energy 200000 eV
+/gps/position  0 -0.4499 4.449 cm
+/gps/direction  0 0.225 -0.9744 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_200000_ev_-13_deg
+
+/run/beamOn 100000
+
+# 200000 eV energy, -14 degree offset
+/gps/energy 200000 eV
+/gps/position  0 -0.4838 4.441 cm
+/gps/direction  0 0.2419 -0.9703 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_200000_ev_-14_deg
+
+/run/beamOn 100000
+
+# 200000 eV energy, -15 degree offset
+/gps/energy 200000 eV
+/gps/position  0 -0.5176 4.432 cm
+/gps/direction  0 0.2588 -0.9659 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_200000_ev_-15_deg
+
+/run/beamOn 100000
+
+# 200000 eV energy, -16 degree offset
+/gps/energy 200000 eV
+/gps/position  0 -0.5513 4.423 cm
+/gps/direction  0 0.2756 -0.9613 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_200000_ev_-16_deg
+
+/run/beamOn 100000
+
+# 200000 eV energy, -17 degree offset
+/gps/energy 200000 eV
+/gps/position  0 -0.5847 4.413 cm
+/gps/direction  0 0.2924 -0.9563 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_200000_ev_-17_deg
+
+/run/beamOn 100000
+
+# 200000 eV energy, -18 degree offset
+/gps/energy 200000 eV
+/gps/position  0 -0.618 4.402 cm
+/gps/direction  0 0.309 -0.9511 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_200000_ev_-18_deg
+
+/run/beamOn 100000
+
+# 200000 eV energy, -19 degree offset
+/gps/energy 200000 eV
+/gps/position  0 -0.6511 4.391 cm
+/gps/direction  0 0.3256 -0.9455 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_200000_ev_-19_deg
 
 /run/beamOn 100000
 
@@ -140,7 +742,23 @@
 /gps/energy 500000 eV
 /gps/position  0  0 4.5 cm
 /gps/direction  0  0 -1 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_500000_ev_0_deg
+
+/run/beamOn 100000
+
+# 500000 eV energy, -1 degree offset
+/gps/energy 500000 eV
+/gps/position  0 -0.0349 4.5 cm
+/gps/direction  0 0.01745 -0.9998 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_500000_ev_-1_deg
 
 /run/beamOn 100000
 
@@ -148,7 +766,23 @@
 /gps/energy 500000 eV
 /gps/position  0 -0.0698 4.499 cm
 /gps/direction  0 0.0349 -0.9994 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_500000_ev_-2_deg
+
+/run/beamOn 100000
+
+# 500000 eV energy, -3 degree offset
+/gps/energy 500000 eV
+/gps/position  0 -0.1047 4.497 cm
+/gps/direction  0 0.05234 -0.9986 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_500000_ev_-3_deg
 
 /run/beamOn 100000
 
@@ -156,7 +790,23 @@
 /gps/energy 500000 eV
 /gps/position  0 -0.1395 4.495 cm
 /gps/direction  0 0.06976 -0.9976 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_500000_ev_-4_deg
+
+/run/beamOn 100000
+
+# 500000 eV energy, -5 degree offset
+/gps/energy 500000 eV
+/gps/position  0 -0.1743 4.492 cm
+/gps/direction  0 0.08716 -0.9962 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_500000_ev_-5_deg
 
 /run/beamOn 100000
 
@@ -164,7 +814,23 @@
 /gps/energy 500000 eV
 /gps/position  0 -0.2091 4.489 cm
 /gps/direction  0 0.1045 -0.9945 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_500000_ev_-6_deg
+
+/run/beamOn 100000
+
+# 500000 eV energy, -7 degree offset
+/gps/energy 500000 eV
+/gps/position  0 -0.2437 4.485 cm
+/gps/direction  0 0.1219 -0.9925 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_500000_ev_-7_deg
 
 /run/beamOn 100000
 
@@ -172,7 +838,143 @@
 /gps/energy 500000 eV
 /gps/position  0 -0.2783 4.481 cm
 /gps/direction  0 0.1392 -0.9903 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_500000_ev_-8_deg
+
+/run/beamOn 100000
+
+# 500000 eV energy, -9 degree offset
+/gps/energy 500000 eV
+/gps/position  0 -0.3129 4.475 cm
+/gps/direction  0 0.1564 -0.9877 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_500000_ev_-9_deg
+
+/run/beamOn 100000
+
+# 500000 eV energy, -10 degree offset
+/gps/energy 500000 eV
+/gps/position  0 -0.3473 4.47 cm
+/gps/direction  0 0.1736 -0.9848 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_500000_ev_-10_deg
+
+/run/beamOn 100000
+
+# 500000 eV energy, -11 degree offset
+/gps/energy 500000 eV
+/gps/position  0 -0.3816 4.463 cm
+/gps/direction  0 0.1908 -0.9816 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_500000_ev_-11_deg
+
+/run/beamOn 100000
+
+# 500000 eV energy, -12 degree offset
+/gps/energy 500000 eV
+/gps/position  0 -0.4158 4.456 cm
+/gps/direction  0 0.2079 -0.9781 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_500000_ev_-12_deg
+
+/run/beamOn 100000
+
+# 500000 eV energy, -13 degree offset
+/gps/energy 500000 eV
+/gps/position  0 -0.4499 4.449 cm
+/gps/direction  0 0.225 -0.9744 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_500000_ev_-13_deg
+
+/run/beamOn 100000
+
+# 500000 eV energy, -14 degree offset
+/gps/energy 500000 eV
+/gps/position  0 -0.4838 4.441 cm
+/gps/direction  0 0.2419 -0.9703 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_500000_ev_-14_deg
+
+/run/beamOn 100000
+
+# 500000 eV energy, -15 degree offset
+/gps/energy 500000 eV
+/gps/position  0 -0.5176 4.432 cm
+/gps/direction  0 0.2588 -0.9659 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_500000_ev_-15_deg
+
+/run/beamOn 100000
+
+# 500000 eV energy, -16 degree offset
+/gps/energy 500000 eV
+/gps/position  0 -0.5513 4.423 cm
+/gps/direction  0 0.2756 -0.9613 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_500000_ev_-16_deg
+
+/run/beamOn 100000
+
+# 500000 eV energy, -17 degree offset
+/gps/energy 500000 eV
+/gps/position  0 -0.5847 4.413 cm
+/gps/direction  0 0.2924 -0.9563 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_500000_ev_-17_deg
+
+/run/beamOn 100000
+
+# 500000 eV energy, -18 degree offset
+/gps/energy 500000 eV
+/gps/position  0 -0.618 4.402 cm
+/gps/direction  0 0.309 -0.9511 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_500000_ev_-18_deg
+
+/run/beamOn 100000
+
+# 500000 eV energy, -19 degree offset
+/gps/energy 500000 eV
+/gps/position  0 -0.6511 4.391 cm
+/gps/direction  0 0.3256 -0.9455 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_500000_ev_-19_deg
 
 /run/beamOn 100000
 
@@ -180,7 +982,23 @@
 /gps/energy 1000000 eV
 /gps/position  0  0 4.5 cm
 /gps/direction  0  0 -1 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_1000000_ev_0_deg
+
+/run/beamOn 100000
+
+# 1000000 eV energy, -1 degree offset
+/gps/energy 1000000 eV
+/gps/position  0 -0.0349 4.5 cm
+/gps/direction  0 0.01745 -0.9998 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_1000000_ev_-1_deg
 
 /run/beamOn 100000
 
@@ -188,7 +1006,23 @@
 /gps/energy 1000000 eV
 /gps/position  0 -0.0698 4.499 cm
 /gps/direction  0 0.0349 -0.9994 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_1000000_ev_-2_deg
+
+/run/beamOn 100000
+
+# 1000000 eV energy, -3 degree offset
+/gps/energy 1000000 eV
+/gps/position  0 -0.1047 4.497 cm
+/gps/direction  0 0.05234 -0.9986 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_1000000_ev_-3_deg
 
 /run/beamOn 100000
 
@@ -196,7 +1030,23 @@
 /gps/energy 1000000 eV
 /gps/position  0 -0.1395 4.495 cm
 /gps/direction  0 0.06976 -0.9976 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_1000000_ev_-4_deg
+
+/run/beamOn 100000
+
+# 1000000 eV energy, -5 degree offset
+/gps/energy 1000000 eV
+/gps/position  0 -0.1743 4.492 cm
+/gps/direction  0 0.08716 -0.9962 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_1000000_ev_-5_deg
 
 /run/beamOn 100000
 
@@ -204,7 +1054,23 @@
 /gps/energy 1000000 eV
 /gps/position  0 -0.2091 4.489 cm
 /gps/direction  0 0.1045 -0.9945 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_1000000_ev_-6_deg
+
+/run/beamOn 100000
+
+# 1000000 eV energy, -7 degree offset
+/gps/energy 1000000 eV
+/gps/position  0 -0.2437 4.485 cm
+/gps/direction  0 0.1219 -0.9925 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_1000000_ev_-7_deg
 
 /run/beamOn 100000
 
@@ -212,7 +1078,143 @@
 /gps/energy 1000000 eV
 /gps/position  0 -0.2783 4.481 cm
 /gps/direction  0 0.1392 -0.9903 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
 /analysis/setFileName photon_sweep_1000000_ev_-8_deg
+
+/run/beamOn 100000
+
+# 1000000 eV energy, -9 degree offset
+/gps/energy 1000000 eV
+/gps/position  0 -0.3129 4.475 cm
+/gps/direction  0 0.1564 -0.9877 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_1000000_ev_-9_deg
+
+/run/beamOn 100000
+
+# 1000000 eV energy, -10 degree offset
+/gps/energy 1000000 eV
+/gps/position  0 -0.3473 4.47 cm
+/gps/direction  0 0.1736 -0.9848 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_1000000_ev_-10_deg
+
+/run/beamOn 100000
+
+# 1000000 eV energy, -11 degree offset
+/gps/energy 1000000 eV
+/gps/position  0 -0.3816 4.463 cm
+/gps/direction  0 0.1908 -0.9816 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_1000000_ev_-11_deg
+
+/run/beamOn 100000
+
+# 1000000 eV energy, -12 degree offset
+/gps/energy 1000000 eV
+/gps/position  0 -0.4158 4.456 cm
+/gps/direction  0 0.2079 -0.9781 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_1000000_ev_-12_deg
+
+/run/beamOn 100000
+
+# 1000000 eV energy, -13 degree offset
+/gps/energy 1000000 eV
+/gps/position  0 -0.4499 4.449 cm
+/gps/direction  0 0.225 -0.9744 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_1000000_ev_-13_deg
+
+/run/beamOn 100000
+
+# 1000000 eV energy, -14 degree offset
+/gps/energy 1000000 eV
+/gps/position  0 -0.4838 4.441 cm
+/gps/direction  0 0.2419 -0.9703 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_1000000_ev_-14_deg
+
+/run/beamOn 100000
+
+# 1000000 eV energy, -15 degree offset
+/gps/energy 1000000 eV
+/gps/position  0 -0.5176 4.432 cm
+/gps/direction  0 0.2588 -0.9659 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_1000000_ev_-15_deg
+
+/run/beamOn 100000
+
+# 1000000 eV energy, -16 degree offset
+/gps/energy 1000000 eV
+/gps/position  0 -0.5513 4.423 cm
+/gps/direction  0 0.2756 -0.9613 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_1000000_ev_-16_deg
+
+/run/beamOn 100000
+
+# 1000000 eV energy, -17 degree offset
+/gps/energy 1000000 eV
+/gps/position  0 -0.5847 4.413 cm
+/gps/direction  0 0.2924 -0.9563 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_1000000_ev_-17_deg
+
+/run/beamOn 100000
+
+# 1000000 eV energy, -18 degree offset
+/gps/energy 1000000 eV
+/gps/position  0 -0.618 4.402 cm
+/gps/direction  0 0.309 -0.9511 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_1000000_ev_-18_deg
+
+/run/beamOn 100000
+
+# 1000000 eV energy, -19 degree offset
+/gps/energy 1000000 eV
+/gps/position  0 -0.6511 4.391 cm
+/gps/direction  0 0.3256 -0.9455 cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/radius 1 mm
+
+/analysis/setFileName photon_sweep_1000000_ev_-19_deg
 
 /run/beamOn 100000
 

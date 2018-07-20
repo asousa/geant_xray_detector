@@ -59,6 +59,7 @@ class EventAction : public G4UserEventAction
     G4double     fEdep;
     G4double     fEdep_right;
     G4double     fEdep_left;
+    G4double     fEdep_right2;
 
 
 };

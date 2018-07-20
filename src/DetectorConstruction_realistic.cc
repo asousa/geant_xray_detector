@@ -126,13 +126,13 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
  
       
 
-  G4double detector_dimX = 20/2.*mm;
+  G4double detector_dimX = 10/2.*mm;
   G4double detector_dimY = 2.2/2.*mm;
   G4double detector_dimZ = 5./2.*mm;
   G4double baffle_thickness = 0.5/2.*mm;
   G4double baffle_height    = 20/2.*mm;
 
-  G4int n_detectors_right = 1;
+  G4int n_detectors_right = 2;
   G4int n_detectors_left  = 1;
 
   

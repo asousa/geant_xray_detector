@@ -42,7 +42,8 @@ EventAction::EventAction(RunAction* runAction)
   fRunAction(runAction),
   fEdep(0.),
   fEdep_right(0.),
-  fEdep_left(0.)
+  fEdep_left(0.),
+  fEdep_right2(0)
 {} 
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -62,6 +63,7 @@ void EventAction::AddEdep_multiple(G4String solid, G4double edep)
 {
     if (solid =="detector0") { fEdep += edep;}
     if (solid =="detector1") { fEdep_right += edep;}
+    if (solid =="detector2") { fEdep_right2 += edep;}
     if (solid =="detector-1"){ fEdep_left += edep;}
 }
 
@@ -71,6 +73,7 @@ void EventAction::BeginOfEventAction(const G4Event*)
 {    
   fEdep = 0.;
   fEdep_right = 0.;
+  fEdep_right2 = 0.;
   fEdep_left = 0.;
 }
 
@@ -103,6 +106,9 @@ void EventAction::EndOfEventAction(const G4Event* event)
 
   // left detector:
   man->FillH1(4, fEdep_left);
+
+  // second right detector:
+  man->FillH1(5, fEdep_right2);
 
 }
 
