@@ -2,6 +2,7 @@
 
 ## To build:
 ```
+source <your geant4 build path>/bin/geant4.sh
 cd build
 cmake ../
 make -j8
