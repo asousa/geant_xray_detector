@@ -63,15 +63,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   G4String nextVolName;
   if (track->GetNextVolume()) nextVolName =  track->GetNextVolume()->GetName();
 
-  // if (!fScoringVolume) { 
-  //   const DetectorConstruction* detectorConstruction = static_cast<const DetectorConstruction*>(G4RunManager::GetRunManager()->GetUserDetectorConstruction());
-  //   fScoringVolume = detectorConstruction->GetScoringVolume();   
-  // }
-
-  // // get volume of the current step
-  // G4LogicalVolume* volume = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetLogicalVolume();
-      
-
   // Check if the particle just entered the detector
   isEnteringDetector= (volName != "detector0" && nextVolName =="detector0");
 
@@ -79,13 +70,9 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   G4double edepStep = step->GetTotalEnergyDeposit();
 
   // Add energy deposition (split up per volume in EventAction)
-  // fEventAction->AddEdep(edepStep);
   fEventAction->AddEdep_multiple(volName, edepStep);
 
-
-
   // G4cout << "hey! this step consisted of: " << edepStep << G4endl;
-
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

@@ -84,12 +84,6 @@ void EventAction::EndOfEventAction(const G4Event* event)
 
   // accumulate statistics in run action
   fRunAction->AddEdep(fEdep);
-  // G4cout << "an event happened! edep is: " << fEdep << G4endl;
-  // G4cout << "An event happened! Accumulator has: " << fRunAction->fEdep.GetValue() << G4endl;
-  // G4cout << "Hey dude, this event consisted of " << fEdep << G4endl;
-
-  // Log to ascii file  
-  // fRunAction->LogEntry(fEdep);
 
   G4AnalysisManager* man = G4AnalysisManager::Instance();
 

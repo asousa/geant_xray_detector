@@ -57,33 +57,14 @@ RunAction::RunAction()
   accumulableManager->RegisterAccumulable(fEdep);
   accumulableManager->RegisterAccumulable(fEdep2); 
 
-  // // Set up the ASCII log file
-  // asciiFileName="detector_ascii.out";
-  // asciiFile = new std::ofstream(asciiFileName);
-
-  // if(asciiFile->is_open()) 
-  //   (*asciiFile) << "Hey! Write this header line please." << G4endl << G4endl;  
-
-
   auto man = G4AnalysisManager::Instance();
   G4cout << "Using " << man->GetType() << G4endl;
 
   histFileName = "detector_hists";
-  // Open an output file: it is done in master and threads. The 
-  // printout is done only by the master, for tidyness
-  // if (isMaster)
-  //   G4cout << "Opening output file " << histFileName << " ... ";
-  // man->OpenFile(histFileName);
+
   man->SetFirstHistoId(1);
   if (isMaster)
     G4cout << " done" << G4endl;
-
-  // G4double e_lower_lim = 100; // keV
-  // G4double e_upper_lim = 1000; // keV
-  // Book 1D histograms
-  // man->CreateH1("0","Energy, in detector log(/keV)",  100,e_lower_lim, e_upper_lim);
-  // man->CreateH1("1","Energy, from source log(/keV)",  100,e_lower_lim, e_upper_lim);
-
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -127,8 +108,7 @@ void RunAction::EndOfRunAction(const G4Run* run)
   G4double rms = edep2 - edep*edep/nofEvents;
   if (rms > 0.) rms = std::sqrt(rms); else rms = 0.;  
 
-  // const DetectorConstruction* detectorConstruction = static_cast<const DetectorConstruction*> (G4RunManager::GetRunManager()->GetUserDetectorConstruction());
-
+  
   // Run conditions
   //  note: There is no primary generator action object for "master" - run manager for multi-threaded mode.
   const PrimaryGeneratorAction* generatorAction = static_cast<const PrimaryGeneratorAction*> (G4RunManager::GetRunManager()->GetUserPrimaryGeneratorAction());

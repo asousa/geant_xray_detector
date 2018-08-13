@@ -135,37 +135,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4int n_detectors_right = 2;
   G4int n_detectors_left  = 1;
 
-  
-
-  // // Shape 1
-  // G4Material* shape1_mat = nist->FindOrBuildMaterial("G4_W");
-  // G4ThreeVector pos1 = G4ThreeVector(0, 0, -3*cm);
-        
-  // // Conical section shape       
-  // G4double shape1_rmina =  0.*cm, shape1_rmaxa = 4.*cm;
-  // G4double shape1_rminb =  0.*cm, shape1_rmaxb = 4.*cm;
-  // G4double shape1_hz = 0.5*mm;
-  // G4double shape1_phimin = 0.*deg, shape1_phimax = 360.*deg;
-  // G4Cons* solidShape1 =    
-  //   new G4Cons("window", 
-  //   shape1_rmina, shape1_rmaxa, shape1_rminb, shape1_rmaxb, shape1_hz,
-  //   shape1_phimin, shape1_phimax);
-                      
-  // G4LogicalVolume* windowShape =                         
-  //   new G4LogicalVolume(solidShape1,         //its solid
-  //                       shape1_mat,          //its material
-  //                       "window");           //its name
-               
-  // new G4PVPlacement(0,                       //no rotation
-  //                   pos1,                    //at position
-  //                   windowShape,             //its logical volume
-  //                   "window",                //its name
-  //                   logicEnv,                //its mother  volume
-  //                   false,                   //no boolean operation
-  //                   0,                       //copy number
-  //                   checkOverlaps);          //overlaps checking
-
-  
   // ----------------------------------------------------------------
   // Detector elements:
   // ----------------------------------------------------------------
@@ -182,14 +151,13 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
 
   G4ThreeVector detector_pos  = G4ThreeVector(0, 0, 0);
-  // // G4ThreeVector detector_pos2 = G4ThreeVector(0,  2*detector_dimY + 2*baffle_thickness, 0);
-  // G4ThreeVector detector_pos3 = G4ThreeVector(0, -2*detector_dimY - 2*baffle_thickness, 0);
 
   std::ostringstream detname;
 
   G4VSolid* detector_solid = new G4Box("detector", 
                    detector_dimX, detector_dimY, detector_dimZ);
 
+  // Generate the detector elements
   for (int i=-n_detectors_left; i<= n_detectors_right; i++){
     detname.str("");
     detname << "detector" << i;
@@ -198,13 +166,13 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
     G4LogicalVolume* detector =                         
     new G4LogicalVolume(detector_solid,      //its solid
-                        CZT,        //its material
-                        detname.str());         //its name
+                        CZT,                 //its material
+                        detname.str());      //its name
                
-    new G4PVPlacement(0,                       //no rotation
-                    detector_pos,                    //at position
+    new G4PVPlacement(0,                     //no rotation
+                    detector_pos,            //at position
                     detector,                //its logical volume
-                    detname.str(),                //its name
+                    detname.str(),           //its name
                     logicEnv,                //its mother  volume
                     false,                   //no boolean operation
                     0,                       //copy number
@@ -213,137 +181,30 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   }
 
 
-
-
-
-
-
-  // G4VSolid* detector_solid = new G4Box("detector", 
-  //                  detector_dimX, detector_dimY, detector_dimZ);
-
-  // G4LogicalVolume* detector =                         
-  //   new G4LogicalVolume(detector_solid,      //its solid
-  //                       detector_mat,        //its material
-  //                       "detector");         //its name
-               
-  //   new G4PVPlacement(0,                       //no rotation
-  //                   detector_pos,                    //at position
-  //                   detector,                //its logical volume
-  //                   "detector",                //its name
-  //                   logicEnv,                //its mother  volume
-  //                   false,                   //no boolean operation
-  //                   0,                       //copy number
-  //                   checkOverlaps);          //overlaps checking
-           
-
-  // // side detectors:
-
-  //   G4ThreeVector detector_sidepos = G4ThreeVector(0, 2*(detector_dimY + baffle_thickness), 0);
-  //   G4LogicalVolume* detector_side =                         
-  //     new G4LogicalVolume(detector_solid,      //its solid
-  //                           detector_mat,        //its material
-  //                           "detector_right_1");         //its name
-      
-  //   new G4PVPlacement(0,                       //no rotation
-  //                       detector_sidepos,                    //at position
-  //                       detector_side,                //its logical volume
-  //                       "detector_right_1",                //its name
-  //                       logicEnv,                //its mother  volume
-  //                       false,                   //no boolean operation
-  //                       0,                       //copy number
-  //                       checkOverlaps);          //overlaps checking    }              
-
-  //   detector_sidepos = G4ThreeVector(0,  -2*(detector_dimY + baffle_thickness), 0);
-
-  //   detector_side =                         
-  //       new G4LogicalVolume(detector_solid,      //its solid
-  //                           detector_mat,        //its material
-  //                           "detector_left_1");         //its name
-      
-  //       new G4PVPlacement(0,                       //no rotation
-  //                       detector_sidepos,                    //at position
-  //                       detector_side,                //its logical volume
-  //                       "detector_left_1",                //its name
-  //                       logicEnv,                //its mother  volume
-  //                       false,                   //no boolean operation
-  //                       0,                       //copy number
-  //                       checkOverlaps);          //overlaps checking    }
-
-
-  //   detector_sidepos = G4ThreeVector(0,  -4*(detector_dimY + baffle_thickness), 0);
-
-  //   detector_side =                         
-  //       new G4LogicalVolume(detector_solid,      //its solid
-  //                           detector_mat,        //its material
-  //                           "detector_left_2");         //its name
-      
-  //       new G4PVPlacement(0,                       //no rotation
-  //                       detector_sidepos,                    //at position
-  //                       detector_side,                //its logical volume
-  //                       "detector_left_2",                //its name
-  //                       logicEnv,                //its mother  volume
-  //                       false,                   //no boolean operation
-  //                       0,                       //copy number
-  //                       checkOverlaps);          //overlaps checking    }
-
-
-
-
   // ----------------------------------------------------------------
   // Baffles:
   // ----------------------------------------------------------------
 
   G4Material* baffle_material = nist->FindOrBuildMaterial("G4_W");
   G4VSolid*   baffle_solid = new G4Box("baffle", detector_dimX, baffle_thickness,  baffle_height + detector_dimZ);
-  // G4ThreeVector baffle1_pos = G4ThreeVector(0,  detector_dimY + baffle_thickness,  baffle_height);
-  // G4ThreeVector baffle2_pos = G4ThreeVector(0, -detector_dimY - baffle_thickness,  baffle_height);
-
-  // G4LogicalVolume* baffle1 =                         
-  // new G4LogicalVolume(baffle_solid,      //its solid
-  //                       baffle_material,        //its material
-  //                       "baffle1");         //its name
-               
-  // new G4PVPlacement(0,                       //no rotation
-  //                   baffle1_pos,             //at position
-  //                   baffle1,                 //its logical volume
-  //                   "baffle1",               //its name
-  //                   logicEnv,                //its mother  volume
-  //                   false,                   //no boolean operation
-  //                   0,                       //copy number
-  //                   checkOverlaps);          //overlaps checking
-
-
-
-  // G4LogicalVolume* baffle2 =                         
-  // new G4LogicalVolume(baffle_solid,      //its solid
-  //                       baffle_material,        //its material
-  //                       "baffle2");         //its name
-               
-  // new G4PVPlacement(0,                       //no rotation
-  //                   baffle2_pos,             //at position
-  //                   baffle2,                 //its logical volume
-  //                   "baffle2",               //its name
-  //                   logicEnv,                //its mother  volume
-  //                   false,                   //no boolean operation
-  //                   0,                       //copy number
-  //                   checkOverlaps);          //overlaps checking
-  
 
   G4ThreeVector baffle_pos;
   std::ostringstream baffle_name;
+
+  // Generate baffles in between the detectors
   for (int i=-1*(n_detectors_left + 1); i <= n_detectors_right; i++) {
     baffle_name.str("");
     baffle_name << "baffle" << i;
     baffle_pos = G4ThreeVector(0, (2*i + 1)*(detector_dimY + baffle_thickness),  baffle_height);
     G4LogicalVolume* baffle =                         
-    new G4LogicalVolume(baffle_solid,      //its solid
-                          baffle_material,        //its material
-                          baffle_name.str());         //its name
+    new G4LogicalVolume(baffle_solid,          //its solid
+                          baffle_material,     //its material
+                          baffle_name.str());  //its name
                  
     new G4PVPlacement(0,                       //no rotation
-                      baffle_pos,             //at position
-                      baffle,                 //its logical volume
-                      baffle_name.str(),               //its name
+                      baffle_pos,              //at position
+                      baffle,                  //its logical volume
+                      baffle_name.str(),       //its name
                       logicEnv,                //its mother  volume
                       false,                   //no boolean operation
                       0,                       //copy number
@@ -352,12 +213,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   }
   // ----------------------------------------------------------------
 
-  // Set scoring volume
-  // fScoringVolume = detector;
-
-  //
   //always return the physical World
-  //
   return physWorld;
 }
 
