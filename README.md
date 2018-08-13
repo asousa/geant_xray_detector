@@ -1,6 +1,6 @@
 # geant_xray_detector
 
-To build:
+## To build:
 ```
 cd build
 cmake ../
