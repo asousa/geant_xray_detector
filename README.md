@@ -12,3 +12,5 @@ cd ../
 ```
 build/main photon_sweep.mac
 ```
+## To analyze output, or to change sweep parameters:
+look at photon_angular_response_sweep.ipynb
